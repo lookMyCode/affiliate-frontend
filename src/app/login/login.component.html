@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <h1 class="text-center">Login</h1>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input 
+            type="email" 
+            class="form-control border"
+            [ngClass]="{
+              'border-danger': form.get('email').invalid && form.get('email').touched,
+              'border-success': form.get('email').valid && form.get('email').touched
+            }"
+            formControlName="email"
+          >
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input 
+            type="password" 
+            class="form-control border"
+            [ngClass]="{
+              'border-danger': form.get('password').invalid && form.get('password').touched,
+              'border-success': form.get('password').valid && form.get('password').touched
+            }"
+            formControlName="password"
+          >
+        </div>
+        <div 
+          class="alert alert-danger"
+          *ngIf="resErr"
+        >
+          {{resErr}}
+        </div>
+        <button 
+          type="submit" 
+          class="btn btn-primary mr-2"
+          [disabled]="form.invalid || loading"
+        >Submit</button>
+        <a 
+          class="btn btn-success mr-2"
+          routerLink="/register"
+        >Register</a>
+        <a 
+          class="btn btn-secondary"
+          routerLink="/reset"
+        >Reset</a>
+      </form>
+    </div>
+  </div>
+</div>

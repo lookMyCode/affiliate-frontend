@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+.auth_wrap {
+  height: 100vh;
+}
+
+.let-click {
+  cursor: pointer;
+}
+.let-click:hover {
+  text-decoration: underline;
+}
+
+app-login,
+app-register,
+app-reset,
+app-change-email,
+app-change-pass,
+app-dashboard,
+app-info,
+app-remove {
+  width: 100%;
+}

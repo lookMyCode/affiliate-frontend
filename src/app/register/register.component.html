@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <h1 class="text-center">Register</h1>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input 
+            type="email" 
+            class="form-control"
+            formControlName="email"
+            [ngClass]="{
+              'border-danger': form.get('email').invalid && form.get('email').touched,
+              'border-success': form.get('email').valid && form.get('email').touched
+            }"
+          >
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input 
+            type="password" 
+            class="form-control"
+            formControlName="pass1"
+            (input)="arePasswordsEqual()"
+            [ngClass]="{
+              'border-danger': form.get('pass1').invalid && form.get('pass1').touched && form.get('pass2').touched && !passwordsAreEqual,
+              'border-success': form.get('pass1').valid && form.get('pass1').touched && passwordsAreEqual
+            }"
+          >
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Repead password</label>
+          <input 
+            type="password" 
+            class="form-control" 
+            formControlName="pass2"
+            (input)="arePasswordsEqual()"
+            [ngClass]="{
+              'border-danger': form.get('pass2').invalid && form.get('pass2').touched && form.get('pass1').touched && !passwordsAreEqual,
+              'border-success': form.get('pass2').valid && form.get('pass2').touched && passwordsAreEqual
+            }"
+          >
+        </div>
+        <div 
+          class="alert alert-danger"
+          *ngIf="resErr"
+        >
+          {{resErr}}
+        </div>
+        <button 
+          type="submit" 
+          class="btn btn-primary mr-2"
+          [disabled]="form.invalid || loading || !passwordsAreEqual"
+        >Send</button>
+        <a 
+          class="btn btn-success mr-2"
+          routerLink="/login"
+        >Login</a>
+        <a 
+          class="btn btn-secondary"
+          routerLink="/reset"
+        >Reset</a>
+      </form>
+    </div>
+  </div>
+</div>

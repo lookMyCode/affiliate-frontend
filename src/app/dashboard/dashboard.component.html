@@ -1,0 +1,100 @@
+<div class="container mt-5">
+  <div class="row mb-4">
+    <a routerLink="/change_pass" class="btn btn-primary mr-2">Change password</a>
+    <a routerLink="/change_email" class="btn btn-primary mr-2">Change email</a>
+    <a routerLink="/remove" class="btn btn-danger mr-2">Delete Profile</a>
+    <button 
+      type="button" 
+      class="btn btn-secondary mr-2"
+      (click)="logout()"
+    >Logout</button>
+  </div>
+
+  <div class="row justify-content-center mb-3">
+    <h1 class="text-center">Links</h1>
+  </div>
+
+  <form 
+    class="row mb-2"
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+  >
+    <div class="col-5">
+      <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Link name"
+        formControlName="name"
+        [ngClass]="{
+          'border-danger': form.get('name').invalid && form.get('name').touched,
+          'border-success': form.get('name').valid && form.get('name').touched
+        }"
+      >
+    </div>
+
+    <div class="col-5">
+      <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Link URL"
+        formControlName="url"
+        [ngClass]="{
+          'border-danger': form.get('url').invalid && form.get('url').touched,
+          'border-success': form.get('url').valid && form.get('url').touched
+        }"
+      >
+    </div>
+
+    <div class="col-2">
+      <button 
+        type="submit"
+        class="btn btn-success"
+        [disabled]="form.invalid || loading"
+      >Add</button>
+    </div>
+  </form>
+
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Link Name</th>
+            <th scope="col">Link URL</th>
+            <th scope="col">Short Link</th>
+            <th scope="col">Clicks</th>
+            <th scope="col">Date</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="links && links.length > 0">
+          <tr *ngFor="let l of links; let i = index">
+            <th scope="row">{{i + 1}}</th>
+            <td>
+              <a [routerLink]="['/info', l._id, 'yearly']" class="let-click">{{l.name}}</a>
+            </td>
+            <td>
+              <a [routerLink]="['/info', l._id, 'yearly']" class="let-click">{{l.originalLink}}</a>
+            </td>
+            <td>
+              <a [routerLink]="['/info', l._id, 'yearly']" class="let-click">{{l.shortLink}}</a>
+            </td>
+            <td>
+              <a [routerLink]="['/info', l._id, 'yearly']" class="let-click">{{l.clicks.length}}</a>
+            </td>
+            <td>
+              <a [routerLink]="['/info', l._id, 'yearly']" class="let-click">{{l.created | date : 'mediumDate'}}</a>
+            </td>
+            <td>
+              <button 
+                class="btn btn-danger"
+                (click)="deleteLink(l._id)"
+              >Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

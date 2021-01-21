@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-warning mb-5">
+        Warning!!! Your profile and all your links will be remoted!
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <h1 class="text-center">Remove profile</h1>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Password</label>
+          <input 
+            type="password" 
+            class="form-control"
+            [ngClass]="{
+              'border-danger': form.get('password').invalid && form.get('password').touched,
+              'border-success': form.get('password').valid && form.get('password').touched
+            }"
+            formControlName="password"
+          >
+        </div>
+        <div 
+          class="alert alert-danger"
+          *ngIf="resErr"
+        >
+          {{resErr}}
+        </div>
+        <button 
+          type="submit" 
+          class="btn btn-danger mr-2"
+          [disabled]="form.invalid || loading"
+        >Remove profile</button>
+        <a routerLink="/dashboard" class="btn btn-success mr-2">Come back</a>
+      </form>
+    </div>
+  </div>
+</div>
