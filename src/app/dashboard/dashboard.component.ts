@@ -41,8 +41,14 @@ export class DashboardComponent implements OnInit {
           if (res.statusCode !== 200) {
             throw new Error('Bad response from server');
           }
+          
 
-          this.links = res.data.links;
+          this.links = res.data.links.map(l => {
+            return {
+              ...l,
+              shortLink: `${window.location.origin}/${l.shortLink}`
+            }
+          });
         } catch (err) {
           console.error(err);
         }

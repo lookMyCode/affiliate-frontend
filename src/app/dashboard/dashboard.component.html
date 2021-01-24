@@ -56,45 +56,47 @@
 
   <div class="row">
     <div class="col-12">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Link Name</th>
-            <th scope="col">Link URL</th>
-            <th scope="col">Short Link</th>
-            <th scope="col">Clicks</th>
-            <th scope="col">Date</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody *ngIf="links && links.length > 0">
-          <tr *ngFor="let l of links; let i = index">
-            <th scope="row">{{i + 1}}</th>
-            <td>
-              <a [routerLink]="['/info', l._id, 'yearly']" class="let-click">{{l.name}}</a>
-            </td>
-            <td>
-              <a [routerLink]="['/info', l._id, 'yearly']" class="let-click">{{l.originalLink}}</a>
-            </td>
-            <td>
-              <a [routerLink]="['/info', l._id, 'yearly']" class="let-click">{{l.shortLink}}</a>
-            </td>
-            <td>
-              <a [routerLink]="['/info', l._id, 'yearly']" class="let-click">{{l.clicks.length}}</a>
-            </td>
-            <td>
-              <a [routerLink]="['/info', l._id, 'yearly']" class="let-click">{{l.created | date : 'mediumDate'}}</a>
-            </td>
-            <td>
-              <button 
-                class="btn btn-danger"
-                (click)="deleteLink(l._id)"
-              >Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Link Name</th>
+              <th scope="col">Link URL</th>
+              <th scope="col">Short Link</th>
+              <th scope="col">Clicks</th>
+              <th scope="col">Date</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="links && links.length > 0">
+            <tr *ngFor="let l of links; let i = index">
+              <th scope="row">{{i + 1}}</th>
+              <td>
+                <a [routerLink]="['/info', l._id, 'yearly']" class="let-click white-space-nowrap">{{l.name}}</a>
+              </td>
+              <td>
+                <a [routerLink]="['/info', l._id, 'yearly']" class="let-click white-space-nowrap">{{l.originalLink}}</a>
+              </td>
+              <td>
+                <a [routerLink]="['/info', l._id, 'yearly']" class="let-click white-space-nowrap">{{l.shortLink}}</a>
+              </td>
+              <td>
+                <a [routerLink]="['/info', l._id, 'yearly']" class="let-click white-space-nowrap">{{l.clicks.length}}</a>
+              </td>
+              <td>
+                <a [routerLink]="['/info', l._id, 'yearly']" class="let-click white-space-nowrap">{{l.created | date : 'mediumDate'}}</a>
+              </td>
+              <td>
+                <button 
+                  class="btn btn-danger"
+                  (click)="deleteLink(l._id)"
+                >Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
