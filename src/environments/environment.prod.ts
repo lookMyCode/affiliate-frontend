@@ -1,4 +1,6 @@
-export const environment = {
+import { IEnvironment } from './../app/interfaces';
+
+export const environment: IEnvironment = {
   production: true,
-  apiURL: 'http://localhost:3000'
+  apiURL: 'https://affiliate-dmytro.herokuapp.com/'
 };
