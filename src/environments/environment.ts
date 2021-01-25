@@ -5,7 +5,7 @@ import { IEnvironment } from './../app/interfaces';
 
 export const environment: IEnvironment = {
   production: false,
-  apiURL: 'https://affiliate-dmytro.herokuapp.com/'
+  apiURL: 'https://affiliate-dmytro.herokuapp.com'
 };
 
 /*
